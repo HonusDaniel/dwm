@@ -7,8 +7,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "source_code_variable:size=10" };
-static const char dmenufont[]       = "source_code_variable:size=11";
+static const char *fonts[]          = { "source_code_variable:size=10", "Noto Color Emoji:size=10" };
+static const char dmenufont[]       = "source_code_variable:size=10";
 static const int user_bh            = 20;        /* 0 means that dwm will calculate bar height, >= 1 means dwm     will user_bh as bar height */
 
 //background color
@@ -22,8 +22,6 @@ static const char col_gray4[]       = "#eeeeee";
 //top bar second color (blue) and active window border
 static const char col_cyan[]        = "#729fcf";
 
-static const char *volupcmd[]  = { "mpc", "volume", "+1", NULL };
-static const char *voldowncmd[]  = { "mpc", "volume", "-1", NULL };
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -74,6 +72,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *firefox[]  = {"firefox", NULL};
 #include "shiftview.c"
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -105,8 +104,8 @@ static Key keys[] = {
   { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-  { 0,                            0x1008ff13, spawn,         {.v = volupcmd } },
-  { 0,                            0x1008ff11, spawn,         {.v = voldowncmd } },
+  { 0,      XF86XK_AudioRaiseVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +10% ; pkill -RTMIN+10 dwmblocks") },
+    { 0,      XF86XK_AudioLowerVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -10% ; pkill -RTMIN+10 dwmblocks") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
