@@ -10,7 +10,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "source_code_variable:size=10", "Noto Color Emoji:size=10" };
 static const char dmenufont[]       = "source_code_variable:size=10";
 static const int user_bh            = 20;        /* 0 means that dwm will calculate bar height, >= 1 means dwm     will user_bh as bar height */
-
+#include <X11/XF86keysym.h>
 //background color
 static const char col_gray1[]       = "#1e1e1e";
 //inactive window border color
@@ -21,12 +21,15 @@ static const char col_gray3[]       = "#ffffff";
 static const char col_gray4[]       = "#eeeeee";
 //top bar second color (blue) and active window border
 static const char col_cyan[]        = "#729fcf";
+//darkish gray
+static const char col_gray5[]       = "#131313";
 
+static const char col_silverblue[]    = "#a0afbf";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_silverblue  },
   [SchemeTitle]  = { col_cyan, col_gray1,  col_cyan  },
 };
 
@@ -72,7 +75,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *firefox[]  = {"firefox", NULL};
 #include "shiftview.c"
-#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -105,7 +107,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
   { 0,      XF86XK_AudioRaiseVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +10% ; pkill -RTMIN+10 dwmblocks") },
-    { 0,      XF86XK_AudioLowerVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -10% ; pkill -RTMIN+10 dwmblocks") },
+  { 0,      XF86XK_AudioLowerVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -10% ; pkill -RTMIN+10 dwmblocks") },
+  { 0,      XF86XK_AudioMute,    spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+  { 0,      XF86XK_AudioPlay,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
