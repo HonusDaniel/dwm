@@ -9,7 +9,7 @@ static const int sidepad            = 0;       /* horizontal padding of bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "source_code_variable:size=10", "Noto Color Emoji:size=10" };
 static const char dmenufont[]       = "source_code_variable:size=10";
-static const int user_bh            = 20;        /* 0 means that dwm will calculate bar height, >= 1 means dwm     will user_bh as bar height */
+static const int user_bh            = 22;        /* 0 means that dwm will calculate bar height, >= 1 means dwm     will user_bh as bar height */
 #include <X11/XF86keysym.h>
 //background color
 static const char col_gray1[]       = "#1e1e1e";
