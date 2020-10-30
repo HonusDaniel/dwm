@@ -17,7 +17,7 @@ Afterwards enter the following command to build and install dwm (if
 necessary as root):
 
     make clean install
-![alt text](https://raw.githubusercontent.com/HonusDaniel/dwm/main/dwm.jpg)
+![alt text](https://raw.githubusercontent.com/HonusDaniel/dwm/main/screen.jpg)
 
 
 Running dwm
