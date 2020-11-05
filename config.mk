@@ -7,6 +7,7 @@ VERSION = 6.2
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
+# for freebsd replace X11R6 with local and also down at line 20 -> /usr/local/include/freetype2. Same for dwmblocks
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
