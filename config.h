@@ -74,11 +74,13 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *firefox[]  = {"firefox", NULL};
+static const char *thunder[]  = {"thunderbird", NULL};
 #include "shiftview.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
   { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefox  } },
+  { MODKEY|ShiftMask,             XK_m,      spawn,          {.v = thunder  } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -110,6 +112,8 @@ static Key keys[] = {
   { 0,      XF86XK_AudioLowerVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -10% ; pkill -RTMIN+10 dwmblocks") },
   { 0,      XF86XK_AudioMute,    spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
   { 0,      XF86XK_AudioPlay,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
+  { 0,      XF86XK_AudioNext,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
+  { 0,      XF86XK_AudioPrev,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
