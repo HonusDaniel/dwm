@@ -20,11 +20,13 @@ static const char col_gray3[]       = "#ffffff";
 //tag color
 static const char col_gray4[]       = "#eeeeee";
 //top bar second color (blue) and active window border
-static const char col_cyan[]        = "#729fcf";
+static const char col_cyan[]        = "#9bbbaa";
+//static const char col_cyan[]        = "#729fcf";
 //darkish gray
 static const char col_gray5[]       = "#131313";
 
-static const char col_silverblue[]    = "#a0afbf";
+//static const char col_silverblue[]    = "#a0afbf";
+static const char col_silverblue[]    = "#a1bfb9";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
